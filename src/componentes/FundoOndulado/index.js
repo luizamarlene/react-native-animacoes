@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import styles from './styles';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, } from "react-native";
+import { View, Image } from "react-native";
 import styles from "./styles";
 import shimmerGif from '../../assets/shimmer.gif';
 

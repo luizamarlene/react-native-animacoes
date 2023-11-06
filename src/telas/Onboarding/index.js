@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StatusBar, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StatusBar, Image, TouchableOpacity, LayoutAnimation } from 'react-native';
 import FundoOndulado from '../../componentes/FundoOndulado';
 import { TelaDeFundo } from '../../componentes/TelaDeFundo';
 import { Formulario } from '../../componentes/Formulario';
@@ -11,14 +11,28 @@ export default function Onboarding({ navigation }) {
   const [fazerLogin, setFazerLogin] = useState(false);
   const [altura, setAltura] = useState(250);
 
+  const animacaoCustomizada = {
+    duration: 1500,
+    create: {
+      type: LayoutAnimation.Types.spring,
+      property: LayoutAnimation.Properties.scaleXY,
+      springDamping: 0.7,
+    },
+  }
+  
   function avancar() {
     if (fazerLogin) {
       navigation.navigate('Principal');
     } else {
       setAltura(400);
+      LayoutAnimation.linear()
       setFazerLogin(true);
     }
   }
+
+  useEffect(() => {
+    LayoutAnimation.configureNext(animacaoCustomizada);
+  }, [])
 
   return (
     <TelaDeFundo>
@@ -31,7 +45,7 @@ export default function Onboarding({ navigation }) {
 
         <View style={styles.carrosselArea}>
           {!fazerLogin && (
-            <Carrosel itens={itens} />
+            <Carrosel itens={itens} tempo={3000}/>
           )}
         </View>
         <Image
