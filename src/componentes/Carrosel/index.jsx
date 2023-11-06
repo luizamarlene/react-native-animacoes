@@ -1,9 +1,8 @@
 import { FlatList, View, Image, Alert } from "react-native";
 import styles from './styles.js'
 import { useEffect, useRef, useState } from 'react'
-import { set } from "react-native-reanimated";
 
-export default function Carrosel({ itens }) {
+export default function Carrosel({ itens, tempo=1500 }) {
     const carroselRef = useRef(null)
     const [index, setIndex] = useState(0)
     const [direction, setDirection] = useState(1);
@@ -22,7 +21,7 @@ export default function Carrosel({ itens }) {
         
         const intervalo = setInterval(() => {
             alteraPosicao()
-        }, 2000)
+        }, tempo)
 
         return () => clearInterval(intervalo)
     }, [index, direction])
