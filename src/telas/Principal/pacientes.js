@@ -11,7 +11,7 @@ const pacientes = [
   },
   {
     id: 2,
-    nome: "Nicoly maluca",
+    nome: "Nicoly",
     tipoConsulta: "Consulta remota",
     horario: "17:20 - 18:00 (40 minutos)",
     foto: require("../../assets/marcos.png"),

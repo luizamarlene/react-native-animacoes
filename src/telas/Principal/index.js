@@ -7,6 +7,7 @@ import soniaFoto from "../../assets/Luiza.png";
 import pacientes from "./pacientes";
 import styles from "./styles";
 import { CardConsultaShimmerEffect } from "../../componentes/CardConsultaShimmerEffect";
+import { InformacoesUsuarioShimmerEffect } from "../../componentes/InformacoesUsuarioShimmerEffect";
 
 export default function Principal({ navigation }) {
   const quantidadeConsultas = pacientes.length;
@@ -15,7 +16,7 @@ export default function Principal({ navigation }) {
 
   useEffect(() => {
     setTimeout(() => {
-      setLoadingFake(false)
+      setLoadingFake(true)
     }, 2000)
 
   }, [])
@@ -32,30 +33,31 @@ export default function Principal({ navigation }) {
   return (
     <TelaDeFundo>
       <View style={styles.container}>
-        <InformacoesUsuario
-          nome="Olá, Luiza"
-          detalhes={`Mais ${quantidadeConsultas} consultas hoje`}
-          foto={soniaFoto}
-        />
-        <Text style={styles.texto}>Hoje</Text>
-
-
-        {loadingFake ?
-          <>
-            {renderShimmer()}
-          </> :
-          <FlatList
-            data={pacientes}
-            keyExtractor={item => String(item.id)}
-            renderItem={({ item }) =>
-              <TouchableOpacity onPress={() => navigation.navigate("Detalhes", item)}>
-                <CardConsulta {...item} />
-              </TouchableOpacity>
-            }
-            showsVerticalScrollIndicator={false}
-          />
+      {loadingFake ?
+        (<>
+          <InformacoesUsuarioShimmerEffect />
+          {renderShimmer()}
+        </>) :
+        (<>
+            <InformacoesUsuario
+              nome="Olá, Luiza"
+              detalhes={`Mais ${quantidadeConsultas} consultas hoje`}
+              foto={soniaFoto}
+            />
+            <Text style={styles.texto}>Hoje</Text>
+            <FlatList
+              data={pacientes}
+              keyExtractor={item => String(item.id)}
+              renderItem={({ item }) =>
+                <TouchableOpacity onPress={() => navigation.navigate("Detalhes", item)}>
+                  <CardConsulta {...item} />
+                </TouchableOpacity>
+              }
+              showsVerticalScrollIndicator={false}
+            />
+          </>)
         }
-      </View>
+        </View>
     </TelaDeFundo>
   );
 }
