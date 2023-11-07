@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, StatusBar, Image, TouchableOpacity, LayoutAnimation } from 'react-native';
 import FundoOndulado from '../../componentes/FundoOndulado';
 import { TelaDeFundo } from '../../componentes/TelaDeFundo';

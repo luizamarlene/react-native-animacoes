@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Image } from "react-native";
-import styles from "./styles";
+import styles from "../CardConsulta/styles";
 import shimmerGif from '../../assets/shimmer.gif';
 
 export function CardConsultaShimmerEffect() {
